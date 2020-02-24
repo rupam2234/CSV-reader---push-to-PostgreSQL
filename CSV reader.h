@@ -18,10 +18,10 @@ class CSVreader
 {
 protected:
 
-	string name;
-	string rollno;
-	string coursename;
-	string age;
+	string name;  // for storing the name (string) from the csv file
+	string rollno;  // for storing the rollno (stirng) from the csv file
+	string coursename;  // for storing the coursename (string) from the csv file
+	string age;  // for storing the age (string) from the csv file
 
 public:
 
