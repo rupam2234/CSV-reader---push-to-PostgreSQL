@@ -108,20 +108,23 @@ public:
 
 		if (obtainResult == SQL_SUCCESS || obtainResult == SQL_SUCCESS_WITH_INFO)
 		{
-			cout << "\nconnection established...\n" << endl;
+			cout << "\nconnection established...\n" << endl; // when conncetion established succesfully
 		}
 
 		else
 
-			cout << "Unable to connect to the database" << endl;
+			cout << "Unable to connect to the database" << endl; // unable to connect to database
 	}
 
-	void pushtoDatabase(vector<string> fileElements)
+	void pushtoDatabase(vector<string> fileElements) // taking vector as input string
 	{
 		for (int i = 0; i < fileElements.size();)
 		{
+                        // concatenating the SQL query inside a loop 
+			
+			// it will automatically run the Query for all the values
 
-			char query[300] = "INSERT INTO datareader(name, rollno, coursename, age) VALUES('";
+			char query[300] = "INSERT INTO datareader(name, rollno, coursename, age) VALUES('"; 
 			strcat_s(query, fileElements[i].c_str());
 			strcat_s(query, "', '");
 			i++;
@@ -135,9 +138,9 @@ public:
 			strcat_s(query, "');");
 			i++;
 
-			wchar_t* SQL_Quer;
+			wchar_t* SQL_Quer; 
 
-			int nChars = MultiByteToWideChar(CP_ACP, 0, query, -1, NULL, 0);
+			int nChars = MultiByteToWideChar(CP_ACP, 0, query, -1, NULL, 0);  // char to Wchar conversion 
 
 			SQL_Quer = new wchar_t[nChars];
 			MultiByteToWideChar(CP_ACP, 0, query, -1, (LPWSTR)SQL_Quer, nChars);
@@ -147,7 +150,7 @@ public:
 
 			obtainResult = SQLExecDirect(stmt, SQL_Quer, SQL_NTS);
 
-			if (obtainResult == SQL_SUCCESS || obtainResult == SQL_SUCCESS_WITH_INFO)
+			if (obtainResult == SQL_SUCCESS || obtainResult == SQL_SUCCESS_WITH_INFO) // obtain the success massage for both type of return
 				cout << "New Values Inserted Into The Database\n";
 
 			else
